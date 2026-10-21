@@ -51,13 +51,19 @@ mongoose
     console.log(`✅ Connected to MongoDB: ${MONGO_URI}`);
     await ensureTelemetryTimeSeriesCollection(mongoose.connection);
 
-    app.listen(PORT, () => {
-      console.log(`🚀 PredictaMaint Server running on port ${PORT}`);
-      console.log(`📡 Ingestion API ready at http://localhost:${PORT}/api/telemetry`);
-      console.log(`🤖 AI Diagnostics ready at http://localhost:${PORT}/api/chat`);
-    });
+    // Only start server if not in Vercel serverless environment
+    if (process.env.VERCEL !== '1') {
+      app.listen(PORT, () => {
+        console.log(`🚀 PredictaMaint Server running on port ${PORT}`);
+        console.log(`📡 Ingestion API ready at http://localhost:${PORT}/api/telemetry`);
+        console.log(`🤖 AI Diagnostics ready at http://localhost:${PORT}/api/chat`);
+      });
+    }
   })
   .catch((err) => {
     console.error('❌ MongoDB Connection Error:', err.message);
     process.exit(1);
   });
+
+// Export for Vercel serverless
+export default app;
