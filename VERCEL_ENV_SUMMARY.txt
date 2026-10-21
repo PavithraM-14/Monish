@@ -1,0 +1,92 @@
+═══════════════════════════════════════════════════════════════════
+  VERCEL ENVIRONMENT VARIABLES - COPY THIS TO VERCEL
+═══════════════════════════════════════════════════════════════════
+
+📋 Add these 5 variables in Vercel Project Settings → Environment Variables
+   (Select all environments: Production, Preview, Development)
+
+───────────────────────────────────────────────────────────────────
+1. MONGO_URI
+───────────────────────────────────────────────────────────────────
+   Description: MongoDB Atlas connection string
+   
+   Value format:
+   mongodb+srv://USERNAME:PASSWORD@cluster0.xxxxx.mongodb.net/predictamaint?retryWrites=true&w=majority
+   
+   Where to get:
+   - Sign up at https://www.mongodb.com/cloud/atlas
+   - Create free M0 cluster
+   - Click "Connect" → "Connect your application"
+   - IMPORTANT: Network Access → Allow 0.0.0.0/0
+
+───────────────────────────────────────────────────────────────────
+2. JWT_SECRET
+───────────────────────────────────────────────────────────────────
+   Description: Secret key for JWT authentication (32+ characters)
+   
+   How to generate:
+   PowerShell: node -e "console.log(require('crypto').randomBytes(32).toString('base64'))"
+   Or use: https://randomkeygen.com/
+   
+   Example: K7x9mP2nQ5vR8tW1yU4eO6aI3bH7jL9k
+
+───────────────────────────────────────────────────────────────────
+3. GROQ_API_KEY
+───────────────────────────────────────────────────────────────────
+   Description: Groq API key for AI chat functionality
+   
+   Where to get:
+   - Go to https://console.groq.com/
+   - Sign up / Login (free tier available)
+   - Create API Key
+   - Copy the key (starts with gsk_)
+
+───────────────────────────────────────────────────────────────────
+4. GROQ_MODEL
+───────────────────────────────────────────────────────────────────
+   Description: AI model to use
+   
+   Value (copy exactly):
+   openai/gpt-oss-20b
+
+───────────────────────────────────────────────────────────────────
+5. VITE_API_BASE_URL
+───────────────────────────────────────────────────────────────────
+   Description: API endpoint for frontend
+   
+   Value (copy exactly):
+   /api
+
+═══════════════════════════════════════════════════════════════════
+  DEPLOYMENT STEPS
+═══════════════════════════════════════════════════════════════════
+
+1. Go to https://vercel.com/dashboard
+2. Click "Add New Project"
+3. Import from GitHub: https://github.com/PavithraM-14/Monish
+4. Framework Preset: Other
+5. Root Directory: ./ (leave as is)
+6. Click "Environment Variables"
+7. Add all 5 variables above (one by one)
+8. Click "Deploy"
+9. Wait 2-5 minutes
+10. Test: https://your-project.vercel.app/api/health
+
+═══════════════════════════════════════════════════════════════════
+  TESTING YOUR DEPLOYMENT
+═══════════════════════════════════════════════════════════════════
+
+✅ Health Check: https://your-project.vercel.app/api/health
+   Should return: {"status":"online","database":"connected"}
+
+✅ Frontend: https://your-project.vercel.app
+   Should show login page
+
+✅ Try registering and logging in
+
+═══════════════════════════════════════════════════════════════════
+
+For detailed instructions, see:
+- DEPLOYMENT_CHECKLIST.md (step-by-step guide)
+- ENV_VARIABLES_REFERENCE.md (detailed explanations)
+- VERCEL_DEPLOYMENT.md (full deployment guide)
